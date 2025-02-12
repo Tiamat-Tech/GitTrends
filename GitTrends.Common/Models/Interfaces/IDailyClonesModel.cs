@@ -2,11 +2,11 @@
 
 public interface IDailyClonesModel
 {
-	public DateTime LocalDay { get; }
+	DateTime LocalDay { get; }
 
-	public DateTimeOffset Day { get; }
+	DateTimeOffset Day { get; }
 
-	public long TotalClones { get; }
+	long TotalClones { get; }
 
-	public long TotalUniqueClones { get; }
+	long TotalUniqueClones { get; }
 }
