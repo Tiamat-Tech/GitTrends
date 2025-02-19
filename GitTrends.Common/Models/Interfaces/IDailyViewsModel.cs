@@ -2,11 +2,11 @@
 
 public interface IDailyViewsModel
 {
-	public DateTime LocalDay { get; }
+	DateTime LocalDay { get; }
 
-	public DateTimeOffset Day { get; }
+	DateTimeOffset Day { get; }
+	
+	long TotalViews { get; }
 
-	public long TotalViews { get; }
-
-	public long TotalUniqueViews { get; }
+	long TotalUniqueViews { get; }
 }
