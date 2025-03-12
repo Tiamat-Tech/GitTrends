@@ -18,12 +18,6 @@
     <PackageReference Include="NuGet.Protocol" />
   </ItemGroup>
 
-  <!-- Fix Transitive NuGet Packages with Vulnerablities-->
-  <ItemGroup>
-    <PackageReference Include="System.Formats.Asn1" />
-    <PackageReference Include="System.Text.Json" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\GitTrends.Common\GitTrends.Common.csproj" />
   </ItemGroup>
