@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using GitTrends.Mobile.Common;
@@ -205,7 +205,7 @@ namespace GitTrends.UITests
 				//Act
 				RepositoryPage.TapSettingsButton();
 				await SettingsPage.WaitForPageToLoad().ConfigureAwait(false);
-			};
+			}
 
 			async Task login()
 			{
