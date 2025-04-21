@@ -80,7 +80,10 @@ public abstract class BaseOnboardingDataTemplate(
 			new NextLabel(nextButtonText)
 				.Row(Row.Indicator).Column(Column.Button),
 		}
-	}.Width(ScreenWidth);
+	}.Bind(Grid.WidthRequestProperty,
+		nameof(Page.Width),
+		mode: BindingMode.OneWay,
+		source: new RelativeBindingSource(RelativeBindingSourceMode.FindAncestor, typeof(Page)));
 
 	static int GetImageRowStarHeight(IDeviceInfo deviceInfo)
 	{
