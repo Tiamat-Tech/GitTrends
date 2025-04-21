@@ -223,11 +223,6 @@ public static partial class MauiProgram
 		options.TracesSampleRate = 1.0;
 		options.ProfilesSampleRate = 1.0;
 
-		options.ExperimentalMetrics = new ExperimentalMetricsOptions
-		{
-			EnableCodeLocations = true
-		};
-
 		ConfigureDebugSentryOptions(options);
 		ConfigureReleaseSentryOptions(options);
 		ConfigureAppStoreSentryOptions(options);

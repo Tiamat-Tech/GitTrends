@@ -142,7 +142,11 @@ public class FavIconService(IAnalyticsService analyticsService, HttpClient clien
 	{
 		try
 		{
-			var shortcutIconNode = htmlDoc.DocumentNode.SelectNodes("//head//link").SelectMany(static x => x.Attributes.Where(static x => x.Value is "shortcut icon")).First();
+			var headLinkNodes = htmlDoc.DocumentNode.SelectNodes("//head//link");
+			if (headLinkNodes is null)
+				return null;
+
+			var shortcutIconNode = headLinkNodes.SelectMany(static x => x.Attributes.Where(static x => x.Value is "shortcut icon")).First();
 			var hrefValue = shortcutIconNode.OwnerNode.Attributes.First(static x => x.Name is "href").Value;
 
 			var shortcutIconUrl = hrefValue.Contains("http") ? hrefValue : url.Trim('/') + hrefValue;
@@ -169,7 +173,11 @@ public class FavIconService(IAnalyticsService analyticsService, HttpClient clien
 	{
 		try
 		{
-			var shortcutIconNode = htmlDoc.DocumentNode.SelectNodes("//head//link").SelectMany(static x => x.Attributes.Where(static x => x.Value is "apple-touch-icon")).First();
+			var headLinkNodes = htmlDoc.DocumentNode.SelectNodes("//head//link");
+			if (headLinkNodes is null)
+				return null;
+
+			var shortcutIconNode = headLinkNodes.SelectMany(static x => x.Attributes.Where(static x => x.Value is "apple-touch-icon")).First();
 			var hrefValue = shortcutIconNode.OwnerNode.Attributes.First(static x => x.Name is "href").Value;
 
 			var appleTouchIconUrl = hrefValue.Contains("http") ? hrefValue : url.Trim('/') + hrefValue;
@@ -196,7 +204,11 @@ public class FavIconService(IAnalyticsService analyticsService, HttpClient clien
 	{
 		try
 		{
-			var shortcutIconNode = htmlDoc.DocumentNode.SelectNodes("//head//link").SelectMany(static x => x.Attributes.Where(static x => x.Value is "icon")).First();
+			var headLinkNodes = htmlDoc.DocumentNode.SelectNodes("//head//link");
+			if (headLinkNodes is null)
+				return null;
+
+			var shortcutIconNode = headLinkNodes.SelectMany(static x => x.Attributes.Where(static x => x.Value is "icon")).First();
 			var hrefValue = shortcutIconNode.OwnerNode.Attributes.First(static x => x.Name is "href").Value;
 
 			var iconUrl = hrefValue.Contains("http") ? hrefValue : url.Trim('/') + hrefValue;
@@ -237,9 +249,9 @@ public class FavIconService(IAnalyticsService analyticsService, HttpClient clien
 	}
 
 	async Task<(Task<FavIconResponseModel?> GetAppleTouchIconTask,
-					Task<FavIconResponseModel?> GetShortcutIconTask,
-					Task<FavIconResponseModel?> GetIconTask,
-					Task<FavIconResponseModel?> GetFavIconTask)> GetFavIcons(string baseUrl, CancellationToken cancellationToken)
+		Task<FavIconResponseModel?> GetShortcutIconTask,
+		Task<FavIconResponseModel?> GetIconTask,
+		Task<FavIconResponseModel?> GetFavIconTask)> GetFavIcons(string baseUrl, CancellationToken cancellationToken)
 	{
 		var response = await _client.GetAsync(baseUrl, cancellationToken).ConfigureAwait(false);
 		var html = await GetHtml(response).ConfigureAwait(false);
