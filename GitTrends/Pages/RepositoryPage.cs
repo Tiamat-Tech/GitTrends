@@ -275,7 +275,7 @@ public partial class RepositoryPage : BaseContentPage<RepositoryViewModel>, ISea
 		var sortingOptions = MobileSortingService.SortingOptionsDictionary.Values;
 
 		string? selection = await DisplayActionSheet(SortingConstants.ActionSheetTitle, SortingConstants.CancelText,
-			null, sortingOptions.ToArray());
+			null, [.. sortingOptions]);
 
 		if (!string.IsNullOrWhiteSpace(selection) && selection != SortingConstants.CancelText)
 			BindingContext.SortRepositoriesCommand.Execute(MobileSortingService.SortingOptionsDictionary

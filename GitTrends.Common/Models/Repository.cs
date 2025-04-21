@@ -181,7 +181,7 @@ public record Repository : IRepository
 		}
 
 		return dailyViewsList.Count > 14
-			? dailyViewsList.Skip(dailyViewsList.Count - 14).ToList()
+			? [.. dailyViewsList.Skip(dailyViewsList.Count - 14)]
 			: dailyViewsList;
 	}
 
@@ -203,7 +203,7 @@ public record Repository : IRepository
 		}
 
 		return dailyClonesList.Count > 14
-			? dailyClonesList.Skip(dailyClonesList.Count - 14).ToList()
+			? [.. dailyClonesList.Skip(dailyClonesList.Count - 14)]
 			: dailyClonesList;
 	}
 }
