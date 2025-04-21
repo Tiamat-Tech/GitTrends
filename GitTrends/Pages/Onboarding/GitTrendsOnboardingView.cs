@@ -8,12 +8,10 @@ namespace GitTrends;
 
 public class GitTrendsOnboardingView(
 	IDeviceInfo deviceInfo,
-	IDeviceDisplay deviceDisplay,
 	IAnalyticsService analyticsService)
 	: BaseOnboardingDataTemplate(
 		OnboardingConstants.SkipText,
 		deviceInfo,
-		deviceDisplay,
 		Color.FromArgb(BaseTheme.LightTealColorHex),
 		0,
 		() => new ImageView(),

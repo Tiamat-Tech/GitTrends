@@ -8,11 +8,10 @@ using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 namespace GitTrends;
 
-public class NotificationsOnboardingView(IDeviceInfo deviceInfo, IDeviceDisplay deviceDisplay, IAnalyticsService analyticsService)
+public class NotificationsOnboardingView(IDeviceInfo deviceInfo, IAnalyticsService analyticsService)
 	: BaseOnboardingDataTemplate(
 		OnboardingConstants.SkipText,
 		deviceInfo,
-		deviceDisplay,
 		Color.FromArgb(BaseTheme.LightTealColorHex),
 		2,
 		() => new ImageView(),

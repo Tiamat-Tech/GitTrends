@@ -9,14 +9,13 @@ namespace GitTrends;
 public abstract class BaseOnboardingDataTemplate(
 	string nextButtonText,
 	IDeviceInfo deviceInfo,
-	IDeviceDisplay deviceDisplay,
 	Color backgroundColor,
 	int carouselPositionIndex,
 	Func<View> createImageView,
 	Func<BaseOnboardingDataTemplate.TitleLabel> createTitleLabel,
 	Func<View> createDescriptionBodyView,
 	IAnalyticsService analyticsService)
-	: DataTemplate(() => CreateGrid(nextButtonText, deviceInfo, deviceDisplay, backgroundColor, carouselPositionIndex, createImageView,
+	: DataTemplate(() => CreateGrid(nextButtonText, deviceInfo, backgroundColor, carouselPositionIndex, createImageView,
 		createTitleLabel, createDescriptionBodyView))
 {
 	enum Row
@@ -37,7 +36,6 @@ public abstract class BaseOnboardingDataTemplate(
 
 	static Grid CreateGrid(string nextButtonText,
 		IDeviceInfo deviceInfo,
-		IDeviceDisplay deviceDisplay,
 		Color backgroundColor,
 		int carouselPositionIndex,
 		Func<View> createImageView,
@@ -82,7 +80,7 @@ public abstract class BaseOnboardingDataTemplate(
 			new NextLabel(nextButtonText)
 				.Row(Row.Indicator).Column(Column.Button),
 		}
-	};
+	}.Width(ScreenWidth);
 
 	static int GetImageRowStarHeight(IDeviceInfo deviceInfo)
 	{
