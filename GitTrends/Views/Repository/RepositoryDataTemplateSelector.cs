@@ -37,7 +37,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardClonesStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData)
+					getter: static (Repository repository) => repository.ContainsClonesData)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalClones,
 					mode: BindingMode.OneTime,
@@ -47,8 +47,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
-					mode: BindingMode.OneTime),
+					getter: static (Repository repository) => repository.ContainsClonesData,
+					mode: BindingMode.OneTime,
+					convert: static containsClonesData => !containsClonesData),
 
 			new StatisticsSvgImage(deviceInfo, "unique_clones.svg", nameof(BaseTheme.CardUniqueClonesStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji2),
@@ -57,7 +58,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardUniqueClonesStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsClonesData,
 					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalUniqueClones,
@@ -68,7 +69,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsClonesData,
 					mode: BindingMode.OneTime,
 					convert: static containsViewsClonesData => !containsViewsClonesData),
 
@@ -107,7 +108,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardViewsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsViewsData,
 					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalViews,
@@ -118,9 +119,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsViewsData,
 					mode: BindingMode.OneTime,
-					convert: static containsViewsClonesData => !containsViewsClonesData),
+					convert: static containsViewsData => !containsViewsData),
 
 			new StatisticsSvgImage(deviceInfo, "unique_views.svg", nameof(BaseTheme.CardUniqueViewsStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji2),
@@ -129,7 +130,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardUniqueViewsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsViewsData,
 					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalUniqueViews,
@@ -140,9 +141,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					getter: static (Repository repository) => repository.ContainsViewsData,
 					mode: BindingMode.OneTime,
-					convert: static containsViewsClonesData => !containsViewsClonesData),
+					convert: static containsViewsData => !containsViewsData),
 
 			new StatisticsSvgImage(deviceInfo, "star.svg", nameof(BaseTheme.CardStarsStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji3),
@@ -164,7 +165,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 				.Bind(ActivityIndicator.IsVisibleProperty,
 					getter: static (Repository repository) => repository.ContainsStarsData,
 					mode: BindingMode.OneTime,
-					convert: static (bool containsStarsData) => !containsStarsData),
+					convert: static containsStarsData => !containsStarsData),
 		];
 	}
 
@@ -232,9 +233,14 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 	{
 		public StatisticsActivityIndicator()
 		{
+#if IOS
+			Scale = 2.0/3.0;
+#endif
+
 			Margin = 2;
 
 			IsRunning = true;
+			IsVisible = true;
 
 			HorizontalOptions = LayoutOptions.Start;
 			VerticalOptions = LayoutOptions.Center;

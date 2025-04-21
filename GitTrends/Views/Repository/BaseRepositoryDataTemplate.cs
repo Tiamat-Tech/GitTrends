@@ -322,6 +322,9 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 
 			HorizontalTextAlignment = TextAlignment.Start;
 			VerticalTextAlignment = TextAlignment.End;
+			
+			HorizontalOptions = LayoutOptions.Start;
+			VerticalOptions = LayoutOptions.Center;
 
 			LineBreakMode = LineBreakMode.TailTruncation;
 

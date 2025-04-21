@@ -46,7 +46,9 @@ public record Repository : IRepository
 	}
 
 	public bool ContainsStarsData => StarredAt is not null;
-	public bool ContainsViewsClonesData => TotalClones is not null && TotalViews is not null && TotalUniqueClones is not null && TotalUniqueViews is not null;
+	public bool ContainsViewsData => TotalViews is not null && TotalUniqueViews is not null;
+	public bool ContainsClonesData => TotalUniqueClones is not null && TotalClones is not null;
+	public bool ContainsViewsClonesData => ContainsViewsData && ContainsClonesData;
 	public bool ContainsViewsClonesStarsData => ContainsViewsClonesData && ContainsStarsData;
 
 	public DateTimeOffset DataDownloadedAt { get; init; }
