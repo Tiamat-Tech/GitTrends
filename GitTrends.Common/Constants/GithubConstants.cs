@@ -11,7 +11,7 @@ public static class GitHubConstants
 	public const string GitHubRateLimitingDocs = "https://docs.github.com/rest/reference/rate-limit";
 
 	public const string GitTrendsRepoName = nameof(GitTrends);
-	public const string GitTrendsRepoOwner = "brminnick";
+	public const string GitTrendsRepoOwner = "TheCodeTraveler";
 	public const string GitTrendsAvatarUrl = "https://avatars3.githubusercontent.com/u/61480020?s=400&u=b1a900b5fa1ede22af9d2d9bfd6c49a072e659ba&v=4";
 
 	public const string AppScheme = "github://";

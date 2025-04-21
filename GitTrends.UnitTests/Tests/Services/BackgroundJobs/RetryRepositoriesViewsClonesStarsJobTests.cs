@@ -22,7 +22,7 @@ class RetryRepositoriesViewsClonesStarsJobTests : BaseJobTest
 		Repository repository_Initial, repository_Final, repository_Database;
 
 		repository_Initial = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var scheduleRetryRepositoriesViewsClonesStarsCompletedTCS = new TaskCompletionSource<Repository>();
 		RetryRepositoriesViewsClonesStarsJob.JobCompleted += HandleRetryRepositoriesViewsClonesStarsJobCompleted;

@@ -33,7 +33,7 @@ class RetryRepositoryStarsJobTests : BaseJobTest
 		await AuthenticateUser(gitHubUserService, gitHubGraphQLApiService, TestCancellationTokenSource.Token).ConfigureAwait(false);
 
 		repository_Initial = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		//Act
 		wasScheduledSuccessfully_First = backgroundFetchService.TryScheduleRetryRepositoriesStars(repository_Initial);

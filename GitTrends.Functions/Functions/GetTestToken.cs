@@ -15,7 +15,7 @@ class GetTestToken(GitHubApiV3Service gitHubApiV3Service,
 {
 	static readonly IReadOnlyDictionary<string, string> _testTokenDictionary = new Dictionary<string, string>
 	{
-		{ "UITestToken_brminnick", Environment.GetEnvironmentVariable("UITestToken_brminnick") ?? string.Empty },
+		{ "UITestToken_TheCodeTraveler", Environment.GetEnvironmentVariable("UITestToken_TheCodeTraveler") ?? string.Empty },
 		{ "UITestToken_GitTrendsApp",  Environment.GetEnvironmentVariable("UITestToken_GitTrendsApp") ?? string.Empty },
 		{ "UITestToken_TheCodeTraveler",  Environment.GetEnvironmentVariable("UITestToken_TheCodeTraveler") ?? string.Empty },
 	};

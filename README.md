@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/brminnick/GitTrends/_apis/build/status/Main?branchName=main)](https://dev.azure.com/brminnick/GitTrends/_build/latest?definitionId=9&branchName=main)
+[![Build Status](https://dev.azure.com/TheCodeTraveler/GitTrends/_apis/build/status/Main?branchName=main)](https://dev.azure.com/TheCodeTraveler/GitTrends/_build/latest?definitionId=9&branchName=main)
 
 <div class="header" align="center">
   <h1 align="center">GitTrends: GitHub Insights</h1>
@@ -49,11 +49,11 @@ Monitor the traffic to your GitHub Repos!<br/>
 
 -   Twitter: [@TheCodeTraveler](https://twitter.com/TheCodeTraveler)
 -   Blog: https://codetraveler.io
--   Github: [@brminnick](https://github.com/brminnick)
+-   Github: [@TheCodeTraveler](https://github.com/TheCodeTraveler)
 
 ## Show your support
 
-⭐️ [Star the GitHub Repo](https://github.com/brminnick/GitTrends/) <br/>
+⭐️ [Star the GitHub Repo](https://github.com/TheCodeTraveler/GitTrends/) <br/>
 ⭐️ [Rate the iOS App](https://apps.apple.com/us/app/gittrends-github-insights/id1500300399) <br/>
 ⭐️ [Rate the Android App](https://play.google.com/store/apps/details?id=com.minnick.gittrends) <br/>
 

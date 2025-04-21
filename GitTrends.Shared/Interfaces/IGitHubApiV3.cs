@@ -26,10 +26,10 @@ public interface IGitHubApiV3
 	[Get("/repos/{owner}/{repo}/contributors")]
 	Task<IReadOnlyList<Contributor>> GetContributors(string owner, string repo, [Header("Authorization")] string authorization, CancellationToken token);
 
-	[Get("/repos/brminnick/gittrends/contents{filePath}")]
+	[Get("/repos/TheCodeTraveler/gittrends/contents{filePath}")]
 	Task<RepositoryFile> GetGitTrendsFile(string filePath, CancellationToken token);
 
-	[Get("/repos/brminnick/gittrends/contents{filePath}")]
+	[Get("/repos/TheCodeTraveler/gittrends/contents{filePath}")]
 	Task<RepositoryFile> GetGitTrendsFile(string filePath, [Header("Authorization")] string authorization, CancellationToken token);
 
 	[Get("/repos/{owner}/{repo}")]

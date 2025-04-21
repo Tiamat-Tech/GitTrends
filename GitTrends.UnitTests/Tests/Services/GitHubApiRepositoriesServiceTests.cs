@@ -308,7 +308,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		IReadOnlyList<ReferringSiteModel> referringSiteModels;
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubUserService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubUserService>();
 		var gitHubGraphQLApiService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubGraphQLApiService>();
@@ -342,7 +342,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		IReadOnlyList<ReferringSiteModel> referringSiteModels;
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubApiRepositoriesService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubApiRepositoriesService>();
 
@@ -372,7 +372,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		IReadOnlyList<ReferringSiteModel> referringSiteModels;
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubAuthenticationService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubAuthenticationService>();
 		var gitHubApiRepositoriesService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubApiRepositoriesService>();
@@ -422,7 +422,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		List<MobileReferringSiteModel> mobileReferringSiteModels = [];
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubUserService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubUserService>();
 		var gitHubGraphQLApiService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubGraphQLApiService>();
@@ -467,7 +467,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		List<MobileReferringSiteModel> mobileReferringSiteModels = [];
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubApiRepositoriesService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubApiRepositoriesService>();
 
@@ -508,7 +508,7 @@ class GitHubApiRepositoriesServiceTests : BaseTest
 		List<MobileReferringSiteModel> mobileReferringSiteModels = [];
 
 		var repository = new Repository(GitHubConstants.GitTrendsRepoName, GitHubConstants.GitTrendsRepoName, 1, GitHubConstants.GitTrendsRepoOwner,
-			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/brminnick/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
+			GitHubConstants.GitTrendsAvatarUrl, 1, 2, 3, "https://github.com/TheCodeTraveler/gittrends", false, DateTimeOffset.UtcNow, RepositoryPermission.ADMIN, false);
 
 		var gitHubAuthenticationService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubAuthenticationService>();
 		var gitHubApiRepositoriesService = ServiceCollection.ServiceProvider.GetRequiredService<GitHubApiRepositoriesService>();
