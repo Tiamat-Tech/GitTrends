@@ -21,11 +21,30 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 
 	private protected BaseRepositoryDataTemplate(Func<object> loadTemplate) : base(loadTemplate)
 	{
-
 	}
 
-	private protected enum Row { Title, Description, DescriptionPadding, Separator, SeparatorPadding, Statistics }
-	private protected enum Column { Avatar, AvatarPadding, Trending, Emoji1, Statistic1, Emoji2, Statistic2, Emoji3, Statistic3 }
+	private protected enum Row
+	{
+		Title,
+		Description,
+		DescriptionPadding,
+		Separator,
+		SeparatorPadding,
+		Statistics
+	}
+
+	private protected enum Column
+	{
+		Avatar,
+		AvatarPadding,
+		Trending,
+		Emoji1,
+		Statistic1,
+		Emoji2,
+		Statistic2,
+		Emoji3,
+		Statistic3
+	}
 
 #if ANDROID
 	protected sealed class CardView : ExtendedSwipeView
@@ -48,8 +67,8 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 			RightItems =
 			[
 				new SwipeItemView
-				{
-					Content = new Label()
+					{
+						Content = new Label()
 							.Margins(right: sidePadding)
 							.Font(size: 32).Center()
 							.Bind(Label.TextProperty,
@@ -59,14 +78,13 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 									? FontAwesomeConstants.StarFilled
 									: FontAwesomeConstants.StarOutline)
 							.Bind(Label.FontFamilyProperty,
-								getter: static(Repository repository) => repository.IsFavorite,
+								getter: static (Repository repository) => repository.IsFavorite,
 								mode: BindingMode.OneTime,
 								convert: static (bool? isFavorite) => isFavorite is true
 									? FontFamilyConstants.FontAwesomeSolid
 									: FontFamilyConstants.FontAwesome)
 							.DynamicResource(Label.TextColorProperty, nameof(BaseTheme.CardStarsStatsIconColor))
-
-				}.Bind(SwipeItemView.CommandProperty,
+					}.Bind(SwipeItemView.CommandProperty,
 						nameof(RepositoryViewModel.ToggleIsFavoriteCommand),
 						BindingMode.OneTime,
 						source: new RelativeBindingSource(RelativeBindingSourceMode.FindAncestorBindingContext, typeof(RepositoryViewModel)))
@@ -77,16 +95,14 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 			LeftItems =
 			[
 				new SwipeItemView
-				{
-					Content = new Label
 					{
-						Text = FontAwesomeConstants.ExternalLink.ToString()
-					}
-							.DynamicResource(Label.TextColorProperty, nameof(BaseTheme.PrimaryTextColor))
+						Content = new Label
+							{
+								Text = FontAwesomeConstants.ExternalLink.ToString()
+							}.DynamicResource(Label.TextColorProperty, nameof(BaseTheme.PrimaryTextColor))
 							.Font(FontFamilyConstants.FontAwesomeSolid, 28).Center()
 							.Margins(left: sidePadding),
-
-				}.Bind(SwipeItemView.CommandProperty,
+					}.Bind(SwipeItemView.CommandProperty,
 						nameof(RepositoryViewModel.NavigateToRepositoryWebsiteCommand),
 						BindingMode.OneTime,
 						source: new RelativeBindingSource(RelativeBindingSourceMode.FindAncestorBindingContext, typeof(RepositoryViewModel)))
@@ -117,8 +133,19 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 			};
 		}
 
-		enum CardViewRow { TopPadding, Card, BottomPadding }
-		enum CardViewColumn { LeftPadding, Card, RightPadding }
+		enum CardViewRow
+		{
+			TopPadding,
+			Card,
+			BottomPadding
+		}
+
+		enum CardViewColumn
+		{
+			LeftPadding,
+			Card,
+			RightPadding
+		}
 
 		sealed class CardViewFrame : MaterialFrame
 		{
@@ -274,10 +301,10 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 
 				static bool IsTrendingImageVisible(bool isTrending, double width, bool? isFavorite, Func<double, bool> isWidthValid)
 				{
-					// When `Width is -1`, Xamarin.Forms hasn't inflated the View
-					// Allow Xamarin.Forms to inflate the view, then validate its Width
+					// When `Width is -1`, .NET MAUI hasn't inflated the View
+					// Allow .NET MAUI to inflate the view, then validate its Width
 					return (isTrending || isFavorite is true)
-						&& (width is -1 || isWidthValid(width));
+					       && (width is -1 || isWidthValid(width));
 				}
 			}
 		}
