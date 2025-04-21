@@ -192,9 +192,10 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			//Only display the value when the Repository Data finishes loading. This avoids showing '0' while the data is loading.
 			new StatisticsLabel(nameof(BaseTheme.CardStarsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
+				.Assign(out Label starsLabel)
 				.Bind(Label.IsVisibleProperty,
 					getter: static (Repository repository) => repository.ContainsStarsData,
-					mode: BindingMode.OneTime)
+					mode: BindingMode.OneWay)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.StarCount,
 					mode: BindingMode.OneWay,
