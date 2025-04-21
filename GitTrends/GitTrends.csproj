@@ -32,7 +32,7 @@
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidDexTool>d8</AndroidDexTool>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <EnableSGenConc>true</EnableSGenConc>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -78,7 +78,9 @@
     <ProjectReference Include="..\GitTrends.Mobile.Common\GitTrends.Mobile.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'&#xD;&#xA;                          OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' 
+                        OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' 
+                        OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
     <PackageReference Include="Shiny.Hosting.Maui" />
   </ItemGroup>
 
