@@ -57,6 +57,8 @@ sealed class ReferringSitesPage : BaseContentPage<ReferringSitesViewModel>, IDis
 
 		Content = new Grid
 		{
+			IgnoreSafeArea = true,
+			
 			RowSpacing = 0,
 
 			RowDefinitions = Rows.Define(
