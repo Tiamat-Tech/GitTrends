@@ -9,13 +9,14 @@ namespace GitTrends;
 public abstract class BaseOnboardingDataTemplate(
 	string nextButtonText,
 	IDeviceInfo deviceInfo,
+	IDeviceDisplay deviceDisplay,
 	Color backgroundColor,
 	int carouselPositionIndex,
 	Func<View> createImageView,
 	Func<BaseOnboardingDataTemplate.TitleLabel> createTitleLabel,
 	Func<View> createDescriptionBodyView,
 	IAnalyticsService analyticsService)
-	: DataTemplate(() => CreateGrid(nextButtonText, deviceInfo, backgroundColor, carouselPositionIndex, createImageView,
+	: DataTemplate(() => CreateGrid(nextButtonText, deviceInfo, deviceDisplay, backgroundColor, carouselPositionIndex, createImageView,
 		createTitleLabel, createDescriptionBodyView))
 {
 	enum Row
@@ -36,24 +37,25 @@ public abstract class BaseOnboardingDataTemplate(
 
 	static Grid CreateGrid(string nextButtonText,
 		IDeviceInfo deviceInfo,
+		IDeviceDisplay deviceDisplay,
 		Color backgroundColor,
 		int carouselPositionIndex,
 		Func<View> createImageView,
 		Func<TitleLabel> createTitleLabel,
-		Func<View> createDescriptionBodyView) => new()
-		{
-			BackgroundColor = backgroundColor,
+		Func<View> createDescriptionBodyView) => new Grid()
+	{
+		BackgroundColor = backgroundColor,
 
-			RowDefinitions = Rows.Define(
+		RowDefinitions = Rows.Define(
 			(Row.Image, Stars(GetImageRowStarHeight(deviceInfo))),
 			(Row.Description, Stars(GetDescriptionRowStarHeight(deviceInfo))),
 			(Row.Indicator, 44)),
 
-			ColumnDefinitions = Columns.Define(
+		ColumnDefinitions = Columns.Define(
 			(Column.Indicator, Star),
 			(Column.Button, Star)),
 
-			Children =
+		Children =
 		{
 			new OpacityOverlay()
 				.Row(Row.Image).ColumnSpan(All<Column>()),
@@ -80,7 +82,7 @@ public abstract class BaseOnboardingDataTemplate(
 			new NextLabel(nextButtonText)
 				.Row(Row.Indicator).Column(Column.Button),
 		}
-		};
+	};
 
 	static int GetImageRowStarHeight(IDeviceInfo deviceInfo)
 	{
@@ -148,9 +150,9 @@ public abstract class BaseOnboardingDataTemplate(
 			AutomationId = OnboardingAutomationIds.NextButon;
 
 			GestureRecognizers.Add(new TapGestureRecognizer
-			{
-				CommandParameter = text
-			}
+				{
+					CommandParameter = text
+				}
 				.Bind(TapGestureRecognizer.CommandProperty,
 					nameof(OnboardingViewModel.HandleDemoButtonTappedCommand),
 					source: new RelativeBindingSource(RelativeBindingSourceMode.FindAncestorBindingContext,

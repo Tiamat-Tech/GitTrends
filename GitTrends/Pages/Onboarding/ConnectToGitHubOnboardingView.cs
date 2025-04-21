@@ -10,10 +10,11 @@ public class ConnectToGitHubOnboardingView : BaseOnboardingDataTemplate
 {
 	readonly IDispatcher _dispatcher;
 
-	public ConnectToGitHubOnboardingView(IDeviceInfo deviceInfo, IDispatcher dispatcher, IAnalyticsService analyticsService)
+	public ConnectToGitHubOnboardingView(IDeviceInfo deviceInfo, IDispatcher dispatcher, IDeviceDisplay deviceDisplay, IAnalyticsService analyticsService)
 		: base(
 			OnboardingConstants.TryDemoText,
 			deviceInfo,
+			deviceDisplay,
 			Color.FromArgb(BaseTheme.CoralColorHex),
 			3,
 			() => new ImageView(),

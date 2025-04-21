@@ -36,6 +36,7 @@
     <MtouchDebug>true</MtouchDebug>
     <EnableSGenConc>true</EnableSGenConc>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
