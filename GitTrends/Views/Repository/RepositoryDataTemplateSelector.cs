@@ -26,8 +26,6 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 		};
 	}
 
-	static bool IsStatisticsLabelVisible(long? item) => item is not null;
-
 	sealed class ClonesDataTemplate(IDeviceInfo deviceInfo) : BaseRepositoryDataTemplate(() => new CardView(deviceInfo, CreateClonesDataTemplateViews(deviceInfo)))
 	{
 		static IEnumerable<View> CreateClonesDataTemplateViews(IDeviceInfo deviceInfo) =>
@@ -39,9 +37,7 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardClonesStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalClones,
-					mode: BindingMode.OneWay,
-					convert: static totalClones => IsStatisticsLabelVisible(totalClones))
+					getter: static (Repository repository) => repository.ContainsViewsClonesData)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalClones,
 					mode: BindingMode.OneTime,
@@ -51,9 +47,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalClones,
-					mode: BindingMode.OneTime,
-					convert: static totalClones => !IsStatisticsLabelVisible(totalClones)),
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					mode: BindingMode.OneTime),
 
 			new StatisticsSvgImage(deviceInfo, "unique_clones.svg", nameof(BaseTheme.CardUniqueClonesStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji2),
@@ -62,9 +57,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardUniqueClonesStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalUniqueClones,
-					mode: BindingMode.OneTime,
-					convert: static totalUniqueClones => IsStatisticsLabelVisible(totalUniqueClones))
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalUniqueClones,
 					mode: BindingMode.OneTime,
@@ -74,9 +68,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalUniqueClones,
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
 					mode: BindingMode.OneTime,
-					convert: static totalUniqueClones => !IsStatisticsLabelVisible(totalUniqueClones)),
+					convert: static containsViewsClonesData => !containsViewsClonesData),
 
 			new StatisticsSvgImage(deviceInfo, "star.svg", nameof(BaseTheme.CardStarsStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji3),
@@ -85,9 +79,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardStarsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic3)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => IsStatisticsLabelVisible(starCount))
+					getter: static (Repository repository) => repository.ContainsStarsData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.StarCount,
 					mode: BindingMode.OneTime,
@@ -97,9 +90,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic3)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
+					getter: static (Repository repository) => repository.ContainsStarsData,
 					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => !IsStatisticsLabelVisible(starCount)),
+					convert: static (bool containsStarsData) => !containsStarsData),
 		];
 	}
 
@@ -114,9 +107,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardViewsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalViews,
-					mode: BindingMode.OneTime,
-					convert: static totalViews => IsStatisticsLabelVisible(totalViews))
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalViews,
 					mode: BindingMode.OneTime,
@@ -126,9 +118,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalViews,
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
 					mode: BindingMode.OneTime,
-					convert: static totalViews => !IsStatisticsLabelVisible(totalViews)),
+					convert: static containsViewsClonesData => !containsViewsClonesData),
 
 			new StatisticsSvgImage(deviceInfo, "unique_views.svg", nameof(BaseTheme.CardUniqueViewsStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji2),
@@ -137,9 +129,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardUniqueViewsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalUniqueViews,
-					mode: BindingMode.OneTime,
-					convert: static totalUniqueViews => IsStatisticsLabelVisible(totalUniqueViews))
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.TotalUniqueViews,
 					mode: BindingMode.OneTime,
@@ -149,9 +140,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic2)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.TotalUniqueViews,
+					getter: static (Repository repository) => repository.ContainsViewsClonesData,
 					mode: BindingMode.OneTime,
-					convert: static totalUniqueViews => !IsStatisticsLabelVisible(totalUniqueViews)),
+					convert: static containsViewsClonesData => !containsViewsClonesData),
 
 			new StatisticsSvgImage(deviceInfo, "star.svg", nameof(BaseTheme.CardStarsStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji3),
@@ -160,9 +151,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardStarsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic3)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => IsStatisticsLabelVisible(starCount))
+					getter: static (Repository repository) => repository.ContainsStarsData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.StarCount,
 					mode: BindingMode.OneTime,
@@ -172,9 +162,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic3)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
+					getter: static (Repository repository) => repository.ContainsStarsData,
 					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => !IsStatisticsLabelVisible(starCount)),
+					convert: static (bool containsStarsData) => !containsStarsData),
 		];
 	}
 
@@ -189,9 +179,8 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsLabel(nameof(BaseTheme.CardStarsStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => IsStatisticsLabelVisible(starCount))
+					getter: static (Repository repository) => repository.ContainsStarsData,
+					mode: BindingMode.OneTime)
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.StarCount,
 					mode: BindingMode.OneTime,
@@ -201,9 +190,9 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			new StatisticsActivityIndicator()
 				.Row(Row.Statistics).Column(Column.Statistic1)
 				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.StarCount,
+					getter: static (Repository repository) => repository.ContainsStarsData,
 					mode: BindingMode.OneTime,
-					convert: static (long? starCount) => !IsStatisticsLabelVisible(starCount)),
+					convert: static containsStarsData => !containsStarsData),
 
 			new StatisticsSvgImage(deviceInfo, "repo_forked.svg", nameof(BaseTheme.CardForksStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji2),
@@ -211,22 +200,10 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			//Only display the value when the Repository Data finishes loading. This avoids showing '0' while the data is loading.
 			new StatisticsLabel(nameof(BaseTheme.CardForksStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic2)
-				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ForkCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? forkCount) => IsStatisticsLabelVisible(forkCount))
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.ForkCount,
 					mode: BindingMode.OneTime,
 					convert: static (long? forkCount) => forkCount.ToAbbreviatedText()),
-
-			//Display an activity indicator while the Data is loading
-			new StatisticsActivityIndicator()
-				.Row(Row.Statistics).Column(Column.Statistic2)
-				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.ForkCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? forkCount) => !IsStatisticsLabelVisible(forkCount)),
 
 			new StatisticsSvgImage(deviceInfo, "issue_opened.svg", nameof(BaseTheme.CardIssuesStatsIconColor))
 				.Row(Row.Statistics).Column(Column.Emoji3),
@@ -234,22 +211,10 @@ class RepositoryDataTemplateSelector(in IDeviceInfo deviceInfo, in MobileSorting
 			//Only display the value when the Repository Data finishes loading. This avoids showing '0' while the data is loading.
 			new StatisticsLabel(nameof(BaseTheme.CardIssuesStatsTextColor))
 				.Row(Row.Statistics).Column(Column.Statistic3)
-				.Bind(Label.IsVisibleProperty,
-					getter: static (Repository repository) => repository.IssuesCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? issuesCount) => IsStatisticsLabelVisible(issuesCount))
 				.Bind(Label.TextProperty,
 					getter: static (Repository repository) => repository.IssuesCount,
 					mode: BindingMode.OneTime,
 					convert: static (long? issuesCount) => issuesCount.ToAbbreviatedText()),
-
-			//Display an activity indicator while the Data is loading
-			new StatisticsActivityIndicator()
-				.Row(Row.Statistics).Column(Column.Statistic3)
-				.Bind(ActivityIndicator.IsVisibleProperty,
-					getter: static (Repository repository) => repository.IssuesCount,
-					mode: BindingMode.OneTime,
-					convert: static (long? issuesCount) => !IsStatisticsLabelVisible(issuesCount)),
 		];
 	}
 

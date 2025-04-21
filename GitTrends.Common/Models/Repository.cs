@@ -7,10 +7,6 @@ namespace GitTrends.Common;
 
 public record Repository : IRepository
 {
-	readonly IReadOnlyList<DateTimeOffset>? _starredAt;
-	readonly IReadOnlyList<DailyViewsModel>? _dailyViewsList;
-	readonly IReadOnlyList<DailyClonesModel>? _dailyClonesList;
-
 	public Repository(string name,
 		string description,
 		long forkCount,
@@ -71,11 +67,11 @@ public record Repository : IRepository
 
 	public IReadOnlyList<DailyViewsModel>? DailyViewsList
 	{
-		get => _dailyViewsList;
+		get;
 		init
 		{
 			var dailyViewsList = value is null ? null : AddMissingDates(value);
-			_dailyViewsList = dailyViewsList;
+			field = dailyViewsList;
 
 			TotalViews = dailyViewsList?.Sum(static x => x.TotalViews);
 			TotalUniqueViews = dailyViewsList?.Sum(static x => x.TotalUniqueViews);
@@ -86,11 +82,11 @@ public record Repository : IRepository
 
 	public IReadOnlyList<DailyClonesModel>? DailyClonesList
 	{
-		get => _dailyClonesList;
+		get;
 		init
 		{
 			var dailyClonesList = value is null ? null : AddMissingDates(value);
-			_dailyClonesList = dailyClonesList;
+			field = dailyClonesList;
 
 			TotalClones = dailyClonesList?.Sum(static x => x.TotalClones);
 			TotalUniqueClones = dailyClonesList?.Sum(static x => x.TotalUniqueClones);
@@ -101,8 +97,8 @@ public record Repository : IRepository
 
 	public IReadOnlyList<DateTimeOffset>? StarredAt
 	{
-		get => _starredAt;
-		init => _starredAt = value?.OrderBy(static x => x).ToList();
+		get;
+		init => field = value?.OrderBy(static x => x).ToList();
 	}
 
 	public long? TotalViews { get; private init; }
