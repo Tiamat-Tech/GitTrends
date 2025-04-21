@@ -112,6 +112,8 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 
 			Content = new Grid
 			{
+				BackgroundColor = Colors.Transparent,
+				
 				InputTransparent = true,
 
 				RowSpacing = 0,
@@ -166,6 +168,8 @@ abstract class BaseRepositoryDataTemplate : DataTemplate
 				public ContentGrid(in IDeviceInfo deviceInfo, in IEnumerable<View> dataTemplateChildren)
 				{
 					Margin = Padding = 0;
+
+					RowSpacing = 6;
 
 					this.Fill();
 
