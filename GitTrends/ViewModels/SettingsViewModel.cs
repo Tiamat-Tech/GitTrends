@@ -85,16 +85,16 @@ public partial class SettingsViewModel : GitHubAuthenticationViewModel
 	public IReadOnlyList<string> LanguagePickerItemsSource { get; } = [.. CultureConstants.CulturePickerOptions.Values];
 
 	[ObservableProperty]
-	public partial bool IsRegisterForNotificationsSwitchToggled { get; internal set; }
+	public partial bool IsRegisterForNotificationsSwitchToggled { get; set; }
 
 	[ObservableProperty]
-	public partial int PreferredChartsSelectedIndex { get; internal set; }
+	public partial int PreferredChartsSelectedIndex { get; set; }
 
 	[ObservableProperty]
-	public partial int ThemePickerSelectedIndex { get; internal set; }
+	public partial int ThemePickerSelectedIndex { get; set; }
 
 	[ObservableProperty]
-	public partial int LanguagePickerSelectedIndex { get; internal set; }
+	public partial int LanguagePickerSelectedIndex { get; set; }
 
 	[ObservableProperty]
 	public partial IReadOnlyList<string> ThemePickerItemsSource { get; private set; } = [];
