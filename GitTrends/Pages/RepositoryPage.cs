@@ -161,16 +161,10 @@ public partial class RepositoryPage : BaseContentPage<RepositoryViewModel>, ISea
 	// Work-around to avoid user "returning" to the SplashScreenPage
 	// (For some reason, MAUI retains the SplashScreenPage in the NavigationStack after `Shell.GotoAsync("/RepositoryPage")`
 	protected override bool OnBackButtonPressed() => false;
-
-#if ANDROID
+	
 	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 	{
 		base.OnNavigatedTo(args);
-#else
-	protected override async void OnAppearing()
-	{
-		base.OnAppearing();
-#endif
 
 		var token = await _gitHubUserService.GetGitHubToken();
 
