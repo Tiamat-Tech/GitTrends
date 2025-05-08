@@ -40,7 +40,7 @@ public static partial class MauiProgram
 			.UseMauiCommunityToolkitMediaElement()
 			.UseSentry(options => ConfigureSentryOptions(options, appInfo))
 			.ConfigureSyncfusionCore()
-			.ConfigureFonts(fonts =>
+			.ConfigureFonts(static fonts =>
 			{
 				fonts.AddFont("FontAwesome.ttf", FontFamilyConstants.FontAwesome);
 				fonts.AddFont("FontAwesomeSolid.ttf", FontFamilyConstants.FontAwesomeSolid);
@@ -49,9 +49,11 @@ public static partial class MauiProgram
 				fonts.AddFont("Roboto-Medium.ttf", FontFamilyConstants.RobotoMedium);
 				fonts.AddFont("Roboto-Regular.ttf", FontFamilyConstants.RobotoRegular);
 			})
-			.ConfigureMauiHandlers(handlers =>
+			.ConfigureMauiHandlers(static handlers =>
 			{
 #if IOS || MACCATALYST
+				handlers.AddHandler<CollectionView, Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
+				handlers.AddHandler<CarouselView, Microsoft.Maui.Controls.Handlers.Items2.CarouselViewHandler2>();
 				handlers.AddHandler<Shell, ShellWithLargeTitlesHandler>();
 #endif
 			});
