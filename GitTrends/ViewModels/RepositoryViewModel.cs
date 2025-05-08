@@ -131,20 +131,20 @@ public partial class RepositoryViewModel : BaseViewModel
 		IReadOnlyList<Repository>? repositoriesFromDatabase = null;
 		var saveCompletedRepositoryToDatabaseTaskList = new List<Task>();
 
-		var cancellationTokenSource = new CancellationTokenSource();
+		var cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(token);
 		GitHubAuthenticationService.LoggedOut += HandleLoggedOut;
 		GitHubAuthenticationService.AuthorizeSessionStarted += HandleAuthorizeSessionStarted;
 		GitHubUserService.ShouldIncludeOrganizationsChanged += HandleShouldIncludeOrganizationsChanged;
 
 		AnalyticsService.Track("Refresh Triggered", "Sorting Option", _mobileSortingService.CurrentOption.ToString());
 
-		var repositoriesFromDatabaseTask = _repositoryDatabase.GetRepositories(token);
+		var repositoriesFromDatabaseTask = _repositoryDatabase.GetRepositories(cancellationTokenSource.Token);
 
 		try
 		{
 			#region Get Visible RepositoryList Data in Foreground
 
-			var favoriteRepositoryUrls = await _repositoryDatabase.GetFavoritesUrls(token).ConfigureAwait(false);
+			var favoriteRepositoryUrls = await _repositoryDatabase.GetFavoritesUrls(cancellationTokenSource.Token).ConfigureAwait(false);
 
 			var repositoryList = new List<Repository>();
 			await foreach (var repository in _gitHubGraphQLApiService.GetRepositories(_gitHubUserService.Alias, cancellationTokenSource.Token).ConfigureAwait(false))
@@ -228,7 +228,7 @@ public partial class RepositoryViewModel : BaseViewModel
 
 				if (!_gitHubUserService.IsDemoUser)
 				{
-					var saveRepositoryToDatabaseTask = _repositoryDatabase.SaveRepository(retrievedRepositoryWithStarsData, token);
+					var saveRepositoryToDatabaseTask = _repositoryDatabase.SaveRepository(retrievedRepositoryWithStarsData, cancellationTokenSource.Token);
 					saveCompletedRepositoryToDatabaseTaskList.Add(saveRepositoryToDatabaseTask);
 
 					//Batch the VisibleRepositoryList Updates to avoid overworking the UI Thread
@@ -267,8 +267,8 @@ public partial class RepositoryViewModel : BaseViewModel
 		{
 			OnPullToRefreshFailed(new LoginExpiredPullToRefreshEventArgs());
 
-			await _gitHubAuthenticationService.LogOut(token).ConfigureAwait(false);
-			await _repositoryDatabase.DeleteAllData(token).ConfigureAwait(false);
+			await _gitHubAuthenticationService.LogOut(cancellationTokenSource.Token).ConfigureAwait(false);
+			await _repositoryDatabase.DeleteAllData(cancellationTokenSource.Token).ConfigureAwait(false);
 
 			SetRepositoriesCollection([], SearchBarText);
 		}
@@ -342,6 +342,10 @@ public partial class RepositoryViewModel : BaseViewModel
 
 			await Task.WhenAll(saveCompletedRepositoryToDatabaseTaskList).ConfigureAwait(false);
 		}
+
+		await Task.Yield();
+		OnPropertyChanged(nameof(VisibleRepositoryList));
+		await Task.Yield();
 
 		static IReadOnlyList<Repository> getDistinctRepositories(in IEnumerable<Repository> repositoriesList1, in IEnumerable<Repository> repositoriesList2, Func<Repository, bool>? filter = null) =>
 			[.. repositoriesList1.Concat(repositoriesList2).Where(filter ?? (_ => true)).GroupBy(static x => x.Url).Where(g => g.Count() is 1).Select(g => g.First())];
