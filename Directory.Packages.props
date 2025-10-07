@@ -5,9 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="AsyncAwaitBestPractices" Version="9.0.0" />
-    <PackageVersion Include="CommunityToolkit.Maui" Version="11.2.0" />
-    <PackageVersion Include="CommunityToolkit.Maui.Markup" Version="6.0.0" />
-    <PackageVersion Include="CommunityToolkit.Maui.MediaElement" Version="6.0.2" />
+    <PackageVersion Include="CommunityToolkit.Maui" Version="12.2.0" />
+    <PackageVersion Include="CommunityToolkit.Maui.Markup" Version="6.0.1" />
+    <PackageVersion Include="CommunityToolkit.Maui.MediaElement" Version="6.1.2" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -15,49 +15,50 @@
     </PackageVersion>
     <PackageVersion Include="GitHubApiStatus" Version="4.0.0" />
     <PackageVersion Include="GitHubApiStatus.Extensions" Version="4.0.0" />
-    <PackageVersion Include="HtmlAgilityPack" Version="1.12.1" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.5" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.5.0" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
-    <PackageVersion Include="Microsoft.Azure.Functions.Worker" Version="2.0.0" />
+    <PackageVersion Include="HtmlAgilityPack" Version="1.12.4" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.9.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
+    <PackageVersion Include="Microsoft.Azure.Functions.Worker" Version="2.1.0" />
     <PackageVersion Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.3.0" />
     <PackageVersion Include="Microsoft.Azure.Functions.Worker.Extensions.Timer" Version="4.3.1" />
-    <PackageVersion Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.4" OutputItemType="Analyzer" />
+    <PackageVersion Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.5" OutputItemType="Analyzer" />
     <PackageVersion Include="Microsoft.Azure.NotificationHubs" Version="4.2.0" />
-    <PackageVersion Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.3.4" />
-    <PackageVersion Include="Microsoft.Maui.Controls" Version="9.0.60" />
-    <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.60" />
-    <PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.70" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0">
+    <PackageVersion Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.3.6" />
+    <PackageVersion Include="Microsoft.Maui.Controls" Version="9.0.110" />
+    <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.110" />
+    <PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.110" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="NuGet.Protocol" Version="6.14.0" />
-    <PackageVersion Include="NUnit" Version="4.3.2">
+    <PackageVersion Include="NUnit" Version="4.4.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="NUnit.Analyzers" Version="4.7.0">
+    <PackageVersion Include="NUnit.Analyzers" Version="4.10.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="NUnit3TestAdapter" Version="5.0.0">
+    <PackageVersion Include="NUnit3TestAdapter" Version="5.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="Refit.HttpClientFactory" Version="8.0.0" />
     <PackageVersion Include="Plugin.StoreReview" Version="6.2.0" />
     <PackageVersion Include="RichardSzalay.MockHttp" Version="7.0.0" />
-    <PackageVersion Include="Sentry.Maui" Version="5.5.1" />
-    <PackageVersion Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
+    <PackageVersion Include="Sentry.Maui" Version="5.16.0" />
+    <PackageVersion Include="Sharpnado.MaterialFrame.Maui" Version="3.0.0" />
     <PackageVersion Include="Shiny.Hosting.Maui" Version="3.3.4" />
     <PackageVersion Include="Shiny.Jobs" Version="3.3.4" />
     <PackageVersion Include="Shiny.Notifications" Version="3.3.4" />
-    <PackageVersion Include="SkiaSharp.Views.Maui.Controls" Version="3.116.1" />
+    <PackageVersion Include="SkiaSharp.Views.Maui.Controls" Version="3.119.1" />
     <PackageVersion Include="sqlite-net-pcl" Version="1.9.172" />
     <PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
-    <PackageVersion Include="Syncfusion.Maui.Charts" Version="27.1.56" />
+    <PackageVersion Include="Syncfusion.Maui.Charts" Version="31.1.23" />
     <PackageVersion Include="System.Formats.Asn1" Version="9.0.0" />
+    <PackageVersion Include="System.Private.Uri" Version="4.3.2" />
     <PackageVersion Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 </Project>

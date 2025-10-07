@@ -39,7 +39,6 @@ class ReferringSitesDataTemplate() : DataTemplate(() => new CardView())
 			public CardViewFrame()
 			{
 				CornerRadius = 4;
-				HasShadow = true;
 				Padding = new Thickness(16);
 				Elevation = 4;
 				Content = new ContentGrid();
