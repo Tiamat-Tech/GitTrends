@@ -5,7 +5,7 @@ variables:
   PathToUITestsCsproj: "GitTrends.UITests/GitTrends.UITests.csproj"
   PathToUnitTestsCsproj: "GitTrends.UnitTests/GitTrends.UnitTests.csproj"
   PathToAzureFunctionsCsproj: "GitTrends.Functions/GitTrends.Functions.csproj"
-  XcodeVersion: "16.3"
+  XcodeVersion: "26.0.1"
 
 trigger:
   branches:
@@ -107,7 +107,7 @@ jobs:
       - task: JavaToolInstaller@0
         displayName: "Install Java"
         inputs:
-          versionSpec: "17"
+          versionSpec: "21"
           jdkArchitectureOption: "x64"
           jdkSourceOption: "PreInstalled"
 
